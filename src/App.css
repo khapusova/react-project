@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+header{
+     margin: -8px;
+     background-color: aliceblue;
+     align-items: center;
+     display: flex;
+     cursor: pointer;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+    background-color: darkgray;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.leftside{
+    font-size: 40px;
+    width: 0%;
+    border: none;
+    background-color: #ffffff00;
+    
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1{
+    width:100%;
+    text-align: center;
+    font-family: Courier New, monospace;
 }
-
-.App-link {
-  color: #61dafb;
+h3{
+    font-family: Courier New, monospace;
+    text-align: center;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-cat-btn{
+    text-align: center;
+    margin: 30px;
+}
+.add-cat-btn button{
+    transition: 0.3s;
+    font-family: Courier New, monospace;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: larger;
+}
+.add-cat-btn button:hover{
+    transition: 0.3s;
+    text-shadow: 2px 2px #6e6e6e;
+    color: rgb(255, 255, 255);
+    background-color: darkgray;
+}
+.cats{
+    padding: 20px;
+}
+.cats img{
+    
+    max-width: 300px;
+    max-height: 200px;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    
 }
