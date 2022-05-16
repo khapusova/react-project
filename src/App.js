@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react';
 import './App.css'
-// import CatsBlock from './components/CatsBlock';
+import AllCats from './components/AllCats';
+// import SingleCat from './components/SingleCat';
 
 const  App = () => {
   let [cats, setCats] = useState([]);
@@ -16,7 +17,8 @@ const  App = () => {
   const addCat = async () =>{
     const response = await fetch('https://api.thecatapi.com/v1/images/search');
     const responseJSON = await response.json();
-    setCats(prev=>prev.concat(responseJSON[0])); 
+    setCats(prev=>[...prev, responseJSON[0]]); 
+
   }
 
   const changeCat = async (id) => {
@@ -24,6 +26,8 @@ const  App = () => {
     const responseJSON = await response.json();
     setCats(cats.map(cat=> cat.id===id?responseJSON[0]:cat));
   }
+  
+
 
   
   
@@ -36,19 +40,8 @@ const  App = () => {
 
       <div className='add-cat-btn'>
       <button onClick={addCat}> Додати котика </button>
-      <div className='cats'>
-        {cats.map(cat => 
-        <div key={cat.id} >
-        <img
-          onClick={()=>changeCat(cat.id)}
-          src={cat.url}
-          alt={cat.description}
-          />
-         <p> {cat.description} </p>
-         </div>
-          )}
-      </div>
-     
+      <AllCats cats={cats} changePictureByIdAll = {changeCat}/>
+   
 
       </div>
     </div>

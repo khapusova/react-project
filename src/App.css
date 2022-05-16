@@ -42,13 +42,21 @@ h3{
     color: rgb(255, 255, 255);
     background-color: darkgray;
 }
-.cats{
-    padding: 20px;
+
+.cats-row{
+    display: flex;
+    justify-content: center;
+   align-items: center;
 }
-.cats img{
+.single-cat{
+    padding: 20px;
+    height: 200px;
+    width: 300px;
+}
+.single-cat img{
     
     max-width: 300px;
-    max-height: 200px;
+    height: 200px;
     display: block;
     margin: auto;
     border-radius: 10px;
