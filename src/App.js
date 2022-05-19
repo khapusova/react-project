@@ -1,11 +1,12 @@
 import { useState,useEffect } from 'react';
 import './App.css'
 import AllCats from './components/AllCats';
-// import SingleCat from './components/SingleCat';
+import Access from './components/authorisation/Access';
 
 const  App = () => {
   let [cats, setCats] = useState([]);
   
+
   useEffect(()=>{
     console.log(cats)
   },[cats]);
@@ -27,23 +28,22 @@ const  App = () => {
     setCats(cats.map(cat=> cat.id===id?responseJSON[0]:cat));
   }
   
-
-
-  
-  
   return (
     <div className="App">
       <header onClick={refreshPage}>
         <button className='leftside' >😸</button>
         <h1>Котикогенератор</h1>
       </header>
-
-      <div className='add-cat-btn'>
-      <button onClick={addCat}> Додати котика </button>
-      <AllCats cats={cats} changePictureByIdAll = {changeCat}/>
-   
-
+      <div className='body-cats'>
+        <Access />
+        
+        </div>
+        <div className='add-cat-btn'>
+        <button onClick={addCat}> Додати котика </button>
+        <AllCats cats={cats} changePictureByIdAll = {changeCat}/>
+       
       </div>
+      
     </div>
   );
 }

@@ -8,12 +8,23 @@ header{
 body{
     background-color: darkgray;
 }
+.body-cats{
+    text-align: center;
+    
+}
+
+
 .leftside{
     font-size: 40px;
     width: 0%;
     border: none;
     background-color: #ffffff00;
     
+}
+.text{
+    width:100%;
+    text-align: center;
+    font-family: Courier New, monospace;
 }
 h1{
     width:100%;
@@ -25,10 +36,14 @@ h3{
     text-align: center;
 }
 .add-cat-btn{
+    /* display:block; */
     text-align: center;
     margin: 30px;
 }
+
 .add-cat-btn button{
+    
+    margin: 5px;
     transition: 0.3s;
     font-family: Courier New, monospace;
     border-radius: 30px;
@@ -37,6 +52,7 @@ h3{
     font-size: larger;
 }
 .add-cat-btn button:hover{
+    margin: 5px;
     transition: 0.3s;
     text-shadow: 2px 2px #6e6e6e;
     color: rgb(255, 255, 255);
@@ -46,7 +62,7 @@ h3{
 .cats-row{
     display: flex;
     justify-content: center;
-   align-items: center;
+    align-items: center;
 }
 .single-cat{
     padding: 20px;
@@ -60,5 +76,50 @@ h3{
     display: block;
     margin: auto;
     border-radius: 10px;
+}
+.autho{
+    color: aliceblue;
+    background-color: rgba(105, 105, 105, 0.463);
+    padding: 10px;
+    margin: 30px;
+    border-radius: 30px; 
+    right: 0;   
+}
+
+.form{
+    display: inline-block;
+}
+
+.password{
+    margin: 5px;
+    /* display: block; */
     
+}
+.login {
+    /* display: block; */
+    margin-bottom: 5px;
+    width: auto;
+    float: right;
+}
+.registration-window{
+    position: fixed;
+    padding: 10px;
+    width: 50%;
+    top: 10%;
+    left: 25%;
+    background-color: darkgrey;
+    border: 5px solid #ffffff;
+    padding: 10px;
+    margin:30px;
+    border-radius: 30px;
+    right: 0;  
+}
+.close-button{
+    float: right;    
+}
+input{
+    min-height: 30px;
+    min-width: 200px;
+    border: #6e6e6e;
+    border-radius: 10px;
 }
