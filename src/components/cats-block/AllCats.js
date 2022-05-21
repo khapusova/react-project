@@ -18,9 +18,12 @@ const AllCats = (props) => {
         }
     return(
         <div className="all-cats">
-            {organizeToRows(4).map(Row=>
-                <CatsRow changePictureByIdRow = {changePictureByIdRow}
-                rows = {Row}/>
+            {organizeToRows(4).map((Row, index)=>
+                
+                <CatsRow key={index}
+                changePictureByIdRow = {changePictureByIdRow}
+                rows = {Row} />
+            
             )}
         </div>
     )

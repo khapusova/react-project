@@ -30,7 +30,7 @@ const Autho =  () => {
         });
         const resp = await response.json();
         if (response.ok){
-            alert("You are signed in!")
+            alert("You are signed in!")            
             authCtx.login(resp.idToken, resp.email);
         }
         else{    

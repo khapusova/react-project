@@ -1,18 +1,30 @@
-import { useState,useEffect } from 'react';
+
+import { useState, useContext, useEffect } from 'react';
 import './App.css'
-import AllCats from './components/AllCats';
+import AllCats from './components/cats-block/AllCats';
 import Access from './components/authorisation/Access';
+import AuthContext from './components/authorisation/AuthProvider';
+import { collection, getDocs} from 'firebase/firestore';
+import {db} from './utils/firebase'
+// import { collection, getDocs,addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+// import { async } from '@firebase/util';
+// import { async } from '@firebase/util';
+// import AuthContext from './components/authorisation/AuthProvider';
 
 const  App = () => {
+  const usersCollectionRef = collection(db, "users");
+  const [initialCats,setInitialCats] = useState();
+  const [loading, setLoading] = useState(false);
+  const authCtx = useContext(AuthContext);
   let [cats, setCats] = useState([]);
+
+
+
   
 
-  useEffect(()=>{
-    console.log(cats)
-  },[cats]);
 
-  const refreshPage = ()=>{
-    window.location.reload();
+  const refreshPage = () => {
+    window.location.reload();   
  }
 
   const addCat = async () =>{
@@ -28,24 +40,29 @@ const  App = () => {
     setCats(cats.map(cat=> cat.id===id?responseJSON[0]:cat));
   }
   
+  const setNewCats = (cts) => {
+    setCats(cts);
+  }
   return (
     <div className="App">
+
       <header onClick={refreshPage}>
         <button className='leftside' >😸</button>
         <h1>Котикогенератор</h1>
       </header>
+
       <div className='body-cats'>
-        <Access />
-        
-        </div>
-        <div className='add-cat-btn'>
+        <Access catsArr = {cats} setNewCats = {setNewCats} />
+      </div>
+
+      <div className='add-cat-btn'>
         <button onClick={addCat}> Додати котика </button>
         <AllCats cats={cats} changePictureByIdAll = {changeCat}/>
-       
       </div>
       
     </div>
   );
+
 }
 
 export default App;
