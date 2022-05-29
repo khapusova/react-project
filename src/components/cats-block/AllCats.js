@@ -1,8 +1,7 @@
 import CatsRow from "./CatsRow";
+import { useSelector } from "react-redux";
 const AllCats = (props) => {
-    const changePictureByIdRow = (id) => {
-        props.changePictureByIdAll(id)
-    }
+    
     //получаем только список котов
     const organizeToRows = ( numOfCatsInOneRow) => {
         let List = props.cats;
@@ -21,7 +20,6 @@ const AllCats = (props) => {
             {organizeToRows(4).map((Row, index)=>
                 
                 <CatsRow key={index}
-                changePictureByIdRow = {changePictureByIdRow}
                 rows = {Row} />
             
             )}

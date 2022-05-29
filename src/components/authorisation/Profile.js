@@ -1,12 +1,14 @@
-import AuthContext from "./AuthProvider";
-import { useContext, useEffect, useState } from "react";
+import { PicturesActs } from "../store/PicturesSlice";
+import { AuthoActs } from "../store/AuthoSlice";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {db} from '../../utils/firebase';
 import { collection, getDocs,addDoc, updateDoc, doc } from 'firebase/firestore';
+
 const Profile = (props) => {
-
-    const authoCtx = useContext(AuthContext);
-    const constemail = authoCtx.email;
-
+    const dispatch = useDispatch();
+    const constemail = useSelector(state =>  state.AuthoReducer.email);
+    const tempCats = useSelector(state => state.PicturesReducer.cats);
     const usersCollectionRef = collection(db, "users");
     const [allEmails,setAllEmails] = useState(null);
     const [emailsGot,setEmailsGot] = useState(false);
@@ -28,25 +30,23 @@ const Profile = (props) => {
     }
 
     const logout = () => {
-        authoCtx.logout();
-        setNewCats([]);
+        dispatch(AuthoActs.logout());
+        dispatch(PicturesActs.setNewCats({newCats:[]}))
     }
 
-    const setNewCats = (newCats) => {
-        props.setNewCats(newCats);
-    }
+    
 
     const getSavedCats =  async (currentEmail) => {
-            let same = allEmails.filter(user => (user.email===currentEmail));
+            let same = await allEmails.filter(user => (user.email===currentEmail));
             if(same.length !== 0)
-                setNewCats(same[0].cats);
+                dispatch(PicturesActs.setNewCats({newCats:same[0].cats}));
             else
-                setNewCats([]);
+                dispatch(PicturesActs.setNewCats({newCats:[]}));
             setCatsGot(true);
         };
     
     const saveAll = async () => {    
-        await emailRequest(constemail, props.catsArr);
+        await emailRequest(constemail, tempCats);
         alert("Cats saved!");
     }
 
@@ -75,7 +75,8 @@ const Profile = (props) => {
 
     return(
             <div className="add-cat-btn">
-                <h2 className="text">Welcome, {authoCtx.email}</h2>
+                
+                <h2 className="text">Welcome, {constemail}</h2>
                 <button onClick={logout}>Log out</button>
                 {catsGot&&<button onClick={saveAll}>Save all</button>}
             </div>

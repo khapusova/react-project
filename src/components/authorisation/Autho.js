@@ -1,14 +1,14 @@
-import { useContext, useRef } from "react";
-import AuthContext from "./AuthProvider";
+import { useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { AuthoActs } from "../store/AuthoSlice";
 import Registration from "./Registration";
 const Autho =  () => {
-    
-    const authCtx = useContext(AuthContext)
-    const isLoggedIn = authCtx.isLoggedIn;
-    
+        const dispatch = useDispatch();
+  
+    const isLoggedIn = useSelector(state => state.AuthoReducer.isLoggedIn); 
+
     const loginInputRef = useRef();
     const passwordInputRef = useRef();
-    
     
     
     const loginSubmit = async () => {
@@ -30,16 +30,13 @@ const Autho =  () => {
         });
         const resp = await response.json();
         if (response.ok){
-            alert("You are signed in!")            
-            authCtx.login(resp.idToken, resp.email);
+            alert("You are signed in!");            
+            dispatch(AuthoActs.login({token: resp.idToken, email:resp.email}));
         }
         else{    
             alert(resp.error.message);
-        }
-        
+        }   
     }
- 
-
     
     return(
         <>

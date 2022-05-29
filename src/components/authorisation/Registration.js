@@ -64,4 +64,4 @@ const Registration = () => {
         </div>
     ))
 }
-export default Registration
+export default Registration;
